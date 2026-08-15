@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StudyTrack - turn your course material into an exam-ready study timetable">
+    <title>StudyTrack | Exam Prep Planner</title>
+</head>
+<body>
+
+    <header id="site-header">
+        <h1>StudyTrack</h1>
+        <p><em>Upload your course material. Get a study timetable and a focus list.</em></p>
+        <nav aria-label="Main navigation">
+            <ul>
+                <li><a href="#upload">Upload Material</a></li>
+                <li><a href="#focus">Focus Topics</a></li>
+                <li><a href="#tips">Exam Tips</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <section id="intro">
+            <h2>What This Site Does</h2>
+            <p>
+                <strong>StudyTrack</strong> is a planning tool built for students who have a pile of
+                <mark>lecture notes, slides, and readings</mark> and not much time before an exam.
+                You add your material below, and the planner works out a day-by-day schedule and
+                tells you which topics need the most attention.
+            </p>
+            <figure>
+                <img src="timetable-preview.png" alt="Preview of a generated weekly study timetable grid" width="400" height="220" title="Sample timetable preview">
+                <figcaption>Example of a generated weekly timetable</figcaption>
+            </figure>
+        </section>
+
+        <hr>
+
+        <section id="upload">
+            <h2>Upload Course Material</h2>
+            <form action="/submit-material" method="post">
+                <fieldset>
+                    <legend>Add a topic</legend>
+
+                    <p>
+                        <label for="topic-name">Topic name:</label><br>
+                        <input type="text" id="topic-name" name="topic-name" placeholder="e.g. Op-Amp Circuits" required>
+                    </p>
+
+                    <p>
+                        <label for="course-file">Course file(s):</label><br>
+                        <input type="file" id="course-file" name="course-file" accept=".txt,.pdf,.docx" multiple>
+                    </p>
+
+                    <p>
+                        <label for="notes">Or paste notes directly:</label><br>
+                        <textarea id="notes" name="notes" rows="4" cols="50" placeholder="Paste lecture notes or a syllabus excerpt here"></textarea>
+                    </p>
+
+                    <p>
+                        <label for="confidence">How confident do you feel about this topic?</label><br>
+                        <select id="confidence" name="confidence">
+                            <option value="1">1 - Not confident at all</option>
+                            <option value="2">2 - A little shaky</option>
+                            <option value="3" selected>3 - Okay</option>
+                            <option value="4">4 - Fairly confident</option>
+                            <option value="5">5 - Very confident</option>
+                        </select>
+                    </p>
+
+                    <p>
+                        <label for="exam-date">Exam date:</label><br>
+                        <input type="date" id="exam-date" name="exam-date" min="2026-08-14" required>
+                    </p>
+
+                    <p>
+                        <label for="daily-hours">Study hours available per day:</label><br>
+                        <input type="number" id="daily-hours" name="daily-hours" min="0.5" max="12" step="0.5" value="2">
+                    </p>
+
+                    <button type="submit">Add Topic &amp; Rebuild Timetable</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <hr>
+
+        <section id="focus">
+            <h2>Topics to Focus On</h2>
+            <p>Ranked by how much material there is and how confident you said you felt:</p>
+            <ol>
+                <li>
+                    Op-Amp Circuits &mdash; priority score
+                    <progress value="90" max="100">90%</progress>
+                </li>
+                <li>
+                    Signals &amp; Systems &mdash; priority score
+                    <progress value="70" max="100">70%</progress>
+                </li>
+                <li>
+                    Digital Logic &mdash; priority score
+                    <progress value="40" max="100">40%</progress>
+                </li>
+            </ol>
+            <aside>
+                <p><small>Priority is a heuristic: more material and lower confidence both push a topic higher on this list.</small></p>
+            </aside>
+        </section>
+
+        <hr>
+
+        <section id="tips">
+            <h2>Exam Prep Tips</h2>
+
+            <article>
+                <h3>Spread topics out, don't block them</h3>
+                <p>
+                    Reviewing several topics in one sitting (interleaving) generally beats spending
+                    an entire session on a single subject &mdash; it mixes topics within each study
+                    session instead of dedicating whole days to one subject.
+                </p>
+            </article>
+
+            <article>
+                <h3>Reserve the final day for review</h3>
+                <p>
+                    The day before the exam is set aside for a quick pass over every topic, starting
+                    with the ones you rated lowest confidence on.
+                </p>
+            </article>
+
+            <blockquote cite="https://www.apa.org">
+                Distributed practice consistently outperforms cramming for long-term retention.
+                &mdash; American Psychological Association
+            </blockquote>
+
+            <details>
+                <summary>Why does confidence affect the schedule?</summary>
+                <p>Topics you rate as shaky get more session slots, since they need more repetition to stick before exam day.</p>
+            </details>
+        </section>
+
+        <hr>
+
+        <section id="about">
+            <h2>About This Project</h2>
+            <p>
+                Built by <abbr title="Electrical Engineering">EE</abbr> student alexsonbanda as a
+                personal tool for organizing exam prep across several courses at once.
+            </p>
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <address>
+            Questions or feedback? <a href="mailto:alexsonbanda67@gmail.com">alexsonbanda67@gmail.com</a><br>
+            <a href="https://github.com/alexsonbanda/studytrack" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
+        </address>
+        <p><small>&copy; 2026 StudyTrack. Built with plain HTML.</small></p>
+    </footer>
+
+</body>
+</html>
